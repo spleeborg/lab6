@@ -2,7 +2,25 @@
 
 int search(int numbers[], int low, int high, int value) 
 {
-	return -1;
+	if (low >= high)
+	{
+		//number is not in the array
+		return -1;
+	}
+
+	int m = low + (high - low) / 2;
+
+	//if the number is in the middle return
+	if (numbers[m] == value)
+		return m;
+		
+	// if the number is smaller than the middle, return the array to the left
+	if(numbers[m] > value)
+	{
+		return search (numbers, low, m - 1, value);
+	}
+	// else the number is in the right array
+	return search (numbers, m + 1, high, value);
 }
 
 void printArray(int numbers[], int sz)
